@@ -1,0 +1,123 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <base href="http://www.lfemcp.com:80/">
+    <title>空气源热泵1</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta id="" name="viewport" content="width=device-width,user-scalable=yes" />
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <link rel="icon" href="userimg/style/e9/e9319b94-7c9d-422b-90ad-52996a6fa4e6.png" mce_href="userimg/style/e9/e9319b94-7c9d-422b-90ad-52996a6fa4e6.png" type="image/x-icon">
+    <link rel="shortcut icon" href="userimg/style/e9/e9319b94-7c9d-422b-90ad-52996a6fa4e6.png" mce_href="userimg/style/e9/e9319b94-7c9d-422b-90ad-52996a6fa4e6.png" type="image/x-icon">
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/font-awesome.min.css" rel="stylesheet">
+    <link href="./css/common.css" rel="stylesheet">
+    <link href="./css/loader1.css" rel="stylesheet">
+    <link href="./css/wap.designer.css" rel="stylesheet">
+
+    <script src="./js/jquery-1.11.1.min.js"></script>
+    <script src="./js/d3.v3.js"></script>
+    <script src="http://cdn.lfemcp.com/common/js/jquery.validate.js"></script>
+    <script src="http://cdn.lfemcp.com/common/js/bootstrap.min.js"></script>
+    <script src="http://cdn.lfemcp.com/common/js/common.js?v=3.0"></script>
+    <script src="http://cdn.lfemcp.com/common/js/session.js"></script>
+    <script type="text/javascript">
+        var initCDN = 'http://cdn.lfemcp.com/';
+    </script>
+</head>
+<body class="bg-success">
+<input type="hidden" id="equipId" value="1148"/>
+<input type="hidden" id="ruleId" value="876"/>
+<input type="hidden" id="conId" />
+<input type="hidden" id="dtuSn" value="B0H58100"/>
+<input type="hidden" id="equipStatus" value="1"/>
+<div class="full-frame">
+    <div class="full-wrapper"><svg class="designer"></svg></div>
+</div>
+<div id="divAlertMsg"></div>
+
+<script>
+    var newscript = document.createElement("script");
+
+</script>
+
+<div class="modal fade bs-example-modal-sm modal-designer" id="commandModal" data-keyboard="true" data-backdrop="true" role="dialog" aria-labelledby="commandModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-designer-command">
+        <div class="modal-content">
+            <div class="modal-header command-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h5 class="modal-title" id="commandModalLabel"></h5>
+            </div>
+            <div class="modal-body command-body">
+                <div id="commandLoader" class="text-center"></div>
+                <div id="commandForm" class="form-horizontal" role="form">
+                    <input type="hidden" id="hiddenElementId" value="0">
+                    <input type="hidden" id="hiddenCommandId" value="0">
+                    <input type="hidden" id="hiddenCommandFCode" value="0">
+                    <div class="form-group command-from-group" id="textGroup">
+                        <div class="col-xs-8 col-xs-offset-2">
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="inputCommandValue"/>
+                                <div class="input-group-addon" id="inputCommandUnit"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" id="radioGroup">
+                        <div class="col-xs-8 command-radio-wapper">
+                            <div class="command-radio">
+                                <div class="radio-inline">
+                                    <label>
+                                        <input type="radio" id="inputRadioTrue" name="commandValue" value="1">
+                                        <span id="radioTrueValue"></span>
+                                    </label>
+                                </div>
+                                <div class="radio-inline">
+                                    <label>
+                                        <input type="radio" id="inputRadioFalse" name="commandValue" value="0">
+                                        <span id="radioFalseValue"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer command-footer clearfix">
+                <a id="btnReadCommand" href="javascript:void(0);"><span class="glyphicon glyphicon-log-out"></span> 读取</a>
+                <a class="pull-right" id="btnWriteCommand" href="javascript:void(0);"><span class="glyphicon glyphicon-log-in"></span> 写入</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal bs-example-modal-sm modal-designer" id="commandFixedModal" data-keyboard="true" data-backdrop="true" role="dialog" aria-labelledby="commandFixedModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-designer-write">
+        <div class="modal-content">
+            <input type="hidden" id="hiddenFixedElementId" value="0">
+            <input type="hidden" id="hiddenSignalFlag" value="0">
+            <input type="hidden" id="hiddenCommandRegValue" value="0">
+            <div class="modal-header command-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h5 class="modal-title" id="commandFixedModalLabel"></h5>
+            </div>
+            <div class="modal-body command-body text-center">
+
+            </div>
+            <div class="modal-footer command-footer clearfix">
+                <a id="btnWriteOK" href="javascript:void(0);"><span class="glyphicon glyphicon-ok"></span> 执行</a>
+                <a href="javascript:void(0);" class="text-danger pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> 取消</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./js/designer_control_app.js"></script>
+<script src="./js/designer_element.js"></script>
+<script src="./js/designer_app.js"></script>
+</body>
+</html>

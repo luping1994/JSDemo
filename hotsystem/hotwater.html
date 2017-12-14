@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)http://www.lfemcp.com/DataAction!loadEquipInfo.action?equipId=1148 -->
+<html lang="zh-cn" xmlns="http://www.w3.org/2000/svg">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--<base href="http://www.lfemcp.com:80/">-->
+
+    <title>热水控制</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta id="" name="viewport" content="width=device-width,user-scalable=yes"/>
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <!--<link href="./css/equip.designer.css" rel="stylesheet">-->
+    <link href="./css/weui.css" rel="stylesheet">
+    <link href="./css/my.css" rel="stylesheet">
+    <link href="./css/loader1.css" rel="stylesheet">
+    <link href="./css/equip.designer.css" rel="stylesheet">
+    <link href="./css/font-awesome.min.css" rel="stylesheet">
+
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/d3.v3.js"></script>
+
+
+</head>
+<body id="body">
+
+<div class="full-frame" id="svgWrapper">
+    <div class="full-wrapper">
+        <svg class="designer" xmlns="http://www.w3.org/2000/svg">
+
+        </svg>
+    </div>
+</div>
+
+<script src="./js/designer.js"></script>
+<script src="./js/hotwater.js"></script>
+<script>
+    init();
+
+    function onclick(id) {
+        for (var i = 0; i < datas.elements.length; i++) {
+            if (datas.elements[i].id == id) {
+                datas.elements[i].status = !datas.elements[i].status;
+            }
+        }
+        $("svg.designer").empty();
+        datas.elements.map(createElement);
+        datas.text.map(createElement);
+    }
+</script>
+</body>
+</html>
